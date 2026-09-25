@@ -1,0 +1,1 @@
+ALTER TABLE `meal_slots` ADD `portable` integer DEFAULT false NOT NULL;

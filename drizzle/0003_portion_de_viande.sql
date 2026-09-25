@@ -1,0 +1,1 @@
+ALTER TABLE `nutrition_profiles` ADD `meat_per_main_meal_g` real DEFAULT 200 NOT NULL;

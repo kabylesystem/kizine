@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+/* ================= Étal : direction visuelle validée par default-user ==================
+   Blanc franc, aplats de couleurs de produits frais, grotesque épaisse et serrée.
+   Pas de filet hairline, pas d'accent unique, pas de fond crème.
+   ===================================================================================== */
+
+@theme {
+  --color-ground: #ffffff;
+  --color-surface: #f0f1ee;
+  --color-surface2: #e5e8e1;
+  --color-surface3: #d9ddd3;
+  --color-ink: #14160f;
+  --color-soft: #565a4e;
+  --color-line: #d5d9cf;
+
+  --color-tomate: #d63127;
+  --color-argile: #b0562f;
+  --color-feuille: #137a42;
+  --color-myrtille: #2440c8;
+  --color-curcuma: #c07a06;
+  --color-betterave: #ab1565;
+  --color-aubergine: #4d2880;
+  --color-on-color: #ffffff;
+
+  --font-display: var(--font-bricolage), "Familjen Grotesk", system-ui, sans-serif;
+  --font-sans: var(--font-familjen), system-ui, sans-serif;
+
+  --radius-etal: 7px;
+}
+
+:root {
+  --ground: #ffffff;
+  --surface: #f0f1ee;
+  --surface2: #e5e8e1;
+  --surface3: #d9ddd3;
+  --ink: #14160f;
+  --soft: #565a4e;
+  --line: #d5d9cf;
+  --tomate: #d63127;
+  --argile: #b0562f;
+  --feuille: #137a42;
+  --myrtille: #2440c8;
+  --curcuma: #c07a06;
+  --betterave: #ab1565;
+  --aubergine: #4d2880;
+  --on-color: #ffffff;
+  /* Séries de graphiques, validées par le validateur du skill dataviz (mode clair). */
+  --series-1: #d63127;
+  --series-2: #2440c8;
+  --series-3: #c07a06;
+  --shadow: 0 1px 0 rgb(20 22 15 / 0.06), 0 10px 30px -22px rgb(20 22 15 / 0.5);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0f1110;
+    --surface: #181b17;
+    --surface2: #232720;
+    --surface3: #2e332b;
+    --ink: #ecefe8;
+    --soft: #9ba193;
+    --line: #2d322b;
+    --tomate: #ff5f52;
+    --argile: #e08b5c;
+    --feuille: #36cb7c;
+    --myrtille: #7b90ff;
+    --curcuma: #f0b33c;
+    --betterave: #f2529a;
+    --aubergine: #ab80eb;
+    --on-color: #0f1110;
+    /* Séries validées contre la surface sombre. */
+    --series-1: #d95a4e;
+    --series-2: #5f75d8;
+    --series-3: #c08423;
+    --shadow: 0 1px 0 rgb(0 0 0 / 0.4), 0 14px 34px -24px #000;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground: #0f1110;
+  --surface: #181b17;
+  --surface2: #232720;
+  --surface3: #2e332b;
+  --ink: #ecefe8;
+  --soft: #9ba193;
+  --line: #2d322b;
+  --tomate: #ff5f52;
+  --argile: #e08b5c;
+  --feuille: #36cb7c;
+  --myrtille: #7b90ff;
+  --curcuma: #f0b33c;
+  --betterave: #f2529a;
+  --aubergine: #ab80eb;
+  --on-color: #0f1110;
+  --series-1: #d95a4e;
+  --series-2: #5f75d8;
+  --series-3: #c08423;
+  --shadow: 0 1px 0 rgb(0 0 0 / 0.4), 0 14px 34px -24px #000;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-familjen), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+body { margin: 0; font-size: 16px; line-height: 1.5; }
+
+h1, h2, h3, .display {
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+button { font: inherit; color: inherit; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+:focus-visible { outline: 2.5px solid var(--myrtille); outline-offset: 2px; border-radius: 4px; }
+
+/* ---------- primitives Étal ---------- */
+
+.etal-band {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  background: var(--c, var(--argile));
+  color: var(--on-color);
+  padding: 8px 14px 9px;
+  border-radius: var(--radius-etal, 7px);
+}
+
+.etal-card {
+  background: var(--surface);
+  border-radius: 7px;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.etal-card:hover { background: var(--surface2); transform: translateY(-2px); box-shadow: var(--shadow); }
+
+.etal-pill {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 100px;
+  background: var(--c, var(--argile));
+  color: var(--on-color);
+  white-space: nowrap;
+}
+.etal-pill--ghost {
+  background: transparent;
+  color: var(--c, var(--tomate));
+  box-shadow: inset 0 0 0 1.5px var(--c, var(--tomate));
+}
+
+.etal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  padding: 14px 20px;
+  border-radius: 7px;
+  border: 0;
+  cursor: pointer;
+  background: var(--ink);
+  color: var(--ground);
+  transition: transform 0.18s, opacity 0.18s, background 0.18s;
+}
+.etal-btn:hover { transform: translateY(-2px); opacity: 0.92; }
+.etal-btn:active { transform: translateY(0); }
+.etal-btn--color { background: var(--c, #d63127); color: #fff; }
+.etal-btn--quiet { background: var(--surface2); color: var(--ink); }
+
+.tabnum { font-variant-numeric: tabular-nums; }
+
+.etal-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.etal-scroll::-webkit-scrollbar { height: 6px; }
+.etal-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+.no-select { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+
+/* Le curseur natif traînait un liseré blanc autour du pouce : on redessine tout. */
+.etal-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 26px;
+  background: transparent;
+  cursor: pointer;
+}
+.etal-slider:focus { outline: none; }
+.etal-slider:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--surface2); }
+.etal-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface3);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.etal-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -7px;
+  border: none;
+  border-radius: 999px;
+  background: var(--c, var(--argile));
+}
+.etal-slider::-moz-range-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface3);
+  box-shadow: inset 0 0 0 1px var(--line);
+  border: none;
+}
+.etal-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 999px;
+  background: var(--c, var(--argile));
+}
+.etal-slider::-moz-focus-outer { border: 0; }
+
+/* Le squelette respire doucement : assez pour dire « ça charge », pas assez pour agacer. */
+@keyframes etal-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.9; }
+}
+.etal-pulse {
+  animation: etal-pulse 1.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .etal-pulse { animation: none; }
+}
+
+/* Les pages « carte » (connexion, mot d'accueil) vivent hors du thème sombre :
+   leur contour de focus doit suivre leur propre palette. */
+.kizine-card :focus-visible,
+.kizine-login :focus-visible {
+  outline: 3px solid #f0c3d5;
+  outline-offset: 2px;
+}
