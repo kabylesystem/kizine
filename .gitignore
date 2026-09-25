@@ -26,7 +26,7 @@ shots.mjs
 # Local images and user data
 public/food/
 public/dish/
-data/
+/data/
 tsconfig.tsbuildinfo
 
 !.env.example
